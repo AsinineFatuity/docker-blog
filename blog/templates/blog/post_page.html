@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags wagtailimages_tags blogapp_tags %}
+{% block content %}
+{% image page.header_image min-500x200 as header_image %}
+<img src="{{header_image.url}}" alt="blog-img" class="img-fluid">
+<h1>{{ page.title }}</h1>
+<p>
+    {% post_categories_list %}
+</p>
+{# body #}
+{% include 'blog/components/streamfield.html' %}
+<hr>
+{% post_tags_list %}
+<hr>
+<p> <a href="{{ page.get_parent.url }}">Return to blog</a></p>
+{% endblock content %}
